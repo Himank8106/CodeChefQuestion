@@ -1,1 +1,1 @@
-# CodeChefQuestion
+# CCP
