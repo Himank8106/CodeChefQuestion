@@ -1,0 +1,26 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+// The number of trailing zeroes in the factorial of n is determined by the number of multiples of 5 in n!. Since multiples of 5 contribute one trailing zero, multiples of 25 contribute two trailing zeroes, multiples of 125 contribute three trailing zeroes, and so on, we divide n by 5 to count the number of multiples of 5, by 25 to count the number of multiples of 25, and so on. The process continues until n becomes 0.
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt(),sum=0;
+            while(n!=0){
+                sum += n/5;
+                n = n/5;
+            }
+            System.out.println(sum);
+        }
+	}
+}
