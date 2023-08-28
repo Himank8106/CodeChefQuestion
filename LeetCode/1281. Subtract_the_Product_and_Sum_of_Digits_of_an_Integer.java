@@ -1,3 +1,5 @@
+/* Link - https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/ */
+
 class Solution {
     public ArrayList<Integer> list = new ArrayList<>();
     public int subtractProductAndSum(int n) {
