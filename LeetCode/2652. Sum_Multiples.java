@@ -1,3 +1,5 @@
+/* Link - https://leetcode.com/problems/sum-multiples/ */
+
 class Solution {
 
     private int op(int n, int k){ return k *(n/k)*(n/k+1)/2;}
