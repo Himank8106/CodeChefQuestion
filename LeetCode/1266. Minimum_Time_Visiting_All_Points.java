@@ -1,4 +1,4 @@
-/* Link - https://leetcode.com/problems/minimum-time-visiting-all-points/description/ */
+/* Link - https://leetcode.com/problems/minimum-time-visiting-all-points/ */
 
 class Solution {
     public int minTimeToVisitAllPoints(int[][] points) {
