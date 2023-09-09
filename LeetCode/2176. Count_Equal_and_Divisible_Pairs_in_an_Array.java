@@ -1,4 +1,4 @@
-/* Link - https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/description/ */
+/* Link - https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/ */
 
 class Solution {
     public int countPairs(int[] nums, int k) {
