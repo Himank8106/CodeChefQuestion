@@ -1,20 +1,28 @@
-/* Link - https://www.geeksforgeeks.org/problems/print-bracket-number4058/1 */
-
-class Solution {
-    ArrayList<Integer> bracketNumbers(String str) {
-        ArrayList<Integer> al = new ArrayList<>();
-        Stack<Integer> st = new Stack<>();
-        int j=1; 
-        for(int i=0; i<str.length(); i++){
-            if(str.charAt(i)=='('){
-                st.push(j);
-                al.add(j);
-                j++;
-            }
-            else if(str.charAt(i)==')'){
-                al.add(st.pop());
-            }
-        }
-        return al;
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public void fun(TreeNode A){
+        if(A==null) return;
+        fun(A.left);
+        fun(A.right);
+        TreeNode temp = A.left;
+        A.left = A.right;
+        A.right = temp;
     }
-};
+    public TreeNode invertTree(TreeNode A) {
+        fun(A);
+        return A;
+    }
+}
+
