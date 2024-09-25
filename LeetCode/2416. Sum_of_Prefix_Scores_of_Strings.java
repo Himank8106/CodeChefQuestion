@@ -1,39 +1,68 @@
 /* Link - https://www.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1 */
 
-class Solution {
-    // Function to check whether the list is palindrome.
-    public static Node reverse(Node head)
-    {
-        if(head==null || head.next==null) return head;
-        Node newHead=reverse(head.next);
-        Node front=head.next;
-        front.next=head;
-        head.next=null;
-        return newHead;
+class Node {
+    int count = 0;
+    Node[] list = new Node[26];
+
+    public boolean containKey(char ch) {
+        return list[ch - 'a'] != null;
     }
-    boolean isPalindrome(Node head) {
-        // Your code here
-        if(head==null || head.next==null) return true;
-        Node slow=head;
-        Node fast=head;
-        while(fast.next!=null && fast.next.next!=null)
-        {
-            fast=fast.next.next;
-            slow=slow.next;
-        }
-        Node newHead=reverse(slow.next);
-        Node temp=newHead;
-        Node curr=head;
-        while(temp!=null)
-        {
-            if(curr.data!=temp.data){
-                reverse(newHead);
-                return false;
+
+    public Node get(char ch) {
+        return list[ch - 'a'];
+    }
+
+    public void put(char ch, Node new_node) {
+        list[ch - 'a'] = new_node;
+    }
+
+    public void inc(char ch) {
+        list[ch - 'a'].count++;
+    }
+
+    public int retCount(char ch) {
+        return list[ch - 'a'].count;
+    }
+}
+
+class Solution {
+    private Node root;
+
+    public Solution() {
+        root = new Node();
+    }
+
+    public void insert(String word) {
+        Node node = root;
+        for (char ch : word.toCharArray()) {
+            if (!node.containKey(ch)) {
+                node.put(ch, new Node());
             }
-            temp=temp.next;
-            curr=curr.next;
+            node.inc(ch);
+            node = node.get(ch);
         }
-        reverse(newHead);
-        return true;
+    }
+
+    public int search(String word) {
+        Node node = root;
+        int preCount = 0;
+        for (char ch : word.toCharArray()) {
+            preCount += node.retCount(ch);
+            node = node.get(ch);
+        }
+        return preCount;
+    }
+
+    public int[] sumPrefixScores(String[] words) {
+        // This problem can be solved using the trie data structure
+        for (String word : words) {
+            insert(word);
+        }
+        int n = words.length;
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            res[i] = search(words[i]);
+        }
+        return res;
     }
 }
