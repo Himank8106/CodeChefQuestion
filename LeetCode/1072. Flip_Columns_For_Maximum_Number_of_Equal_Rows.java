@@ -1,37 +1,25 @@
 /* Link - https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/ */
 
 class Solution {
-    private int maxi = 0;
-
-    private void solve(int c, int[][] matrix) {
+    public int maxEqualRowsAfterFlips(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
-        if (c >= m) return;
+        HashMap<String, Integer> map = new HashMap<>();
 
-        solve(c + 1, matrix);
-
-        for (int i = 0; i < n; i++) {
-            matrix[i][c] = 1 - matrix[i][c];
-        }
-
-        int cnt = 0;
-        for (int i = 0; i < n; i++) {
-            boolean flag = true;
-            for (int j = 1; j < m; j++) {
-                if (matrix[i][j] != matrix[i][j - 1]) {
-                    flag = false;
-                    break;
-                }
+        for (int[] row : matrix) {
+            StringBuilder temp = new StringBuilder();
+            for (int j = 0; j < m; j++) {
+                temp.append(row[j] == row[0] ? '1' : '0');
             }
-            if (flag) cnt++;
+            String pattern = temp.toString();
+            map.put(pattern, map.getOrDefault(pattern, 0) + 1);
         }
 
-        maxi = Math.max(maxi, cnt);
-        solve(c + 1, matrix);
-    }
+        int maxi = 0;
+        for (int count : map.values()) {
+            maxi = Math.max(maxi, count);
+        }
 
-    public int maxEqualRowsAfterFlips(int[][] matrix) {
-        solve(0, matrix);
         return maxi;
     }
 }
