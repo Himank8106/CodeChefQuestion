@@ -1,0 +1,24 @@
+/* Link - https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1 */
+
+class Solution {
+    public ArrayList<Integer> calculateSpan(int[] arr) {
+        // write code here
+        Stack<Integer>s=new Stack<>();
+        ArrayList<Integer> ans=new ArrayList<Integer>();
+        for(int i=0;i<arr.length;i++){
+            while(!s.isEmpty()&&arr[s.peek()]<=arr[i])
+            {
+                s.pop();
+            }
+            if(!s.isEmpty())
+            {
+                ans.add(i-s.peek());
+            }
+            else{
+                ans.add(i+1);
+            }
+            s.add(i);
+        }
+        return ans;
+    }
+}
